@@ -17,5 +17,6 @@ const (
 )
 
 const (
-	SuccessCode = "000"
+	SuccessCode        = "000"
+	InternalServerCode = "900"
 )

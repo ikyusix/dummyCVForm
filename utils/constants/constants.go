@@ -7,7 +7,6 @@ const (
 )
 
 const (
-	LogType       = "logType"
 	Url           = "url"
 	Method        = "method"
 	Request       = "Request"

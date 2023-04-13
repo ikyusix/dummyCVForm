@@ -30,10 +30,8 @@ func InitConnectionDB() error {
 	if errdb != nil {
 		return errdb
 	}
-
 	if err := conn.Ping(); err != nil {
 		return err
-
 	}
 
 	db.dbPq = conn
