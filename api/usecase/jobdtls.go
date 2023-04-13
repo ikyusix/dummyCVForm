@@ -20,3 +20,8 @@ func (j *JobControllers) Get(c *gin.Context) (*models.DataArr, error) {
 	}
 	return data, nil
 }
+
+func (j *JobControllers) Create(c *gin.Context, req *models.Data) error {
+	//TODO implement me
+	panic("implement me")
+}

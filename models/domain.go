@@ -16,8 +16,10 @@ type ProfileRepositories interface {
 
 type JobDtlsUsecase interface {
 	Get(c *gin.Context) (*DataArr, error)
+	Create(c *gin.Context, req *Data) error
 }
 
 type JobDtlsRepositories interface {
 	Get(c *gin.Context) (*DataArr, error)
+	Create(c *gin.Context, req *Data) error
 }

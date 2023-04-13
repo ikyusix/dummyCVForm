@@ -20,7 +20,7 @@ func NewProfileControllers(db *sql.DB) *ProfileControllers {
 func (ct *ProfileControllers) Get(c *gin.Context, id string) (*models.Profile, error) {
 	var rowScan models.Profile
 
-	err := ct.db.QueryRow("select profile_code, wanted_job_title, first_name, last_name, email, phone, country, city, address, postal_code, driving_license, nationality, place_of_birth, date_of_birth, photo_url from cv_form.user_dtls.profile_dtls where profile_code = $1", id).Scan(&rowScan.ProfileCode, &rowScan.WantedJobTitle, &rowScan.FirstName, &rowScan.LastName, &rowScan.Email, &rowScan.Phone, &rowScan.Country, &rowScan.City, &rowScan.Address, &rowScan.PostalCode, &rowScan.DrivingLicense, &rowScan.Nationality, &rowScan.PlaceOfBirth, &rowScan.DateOfBirth, &rowScan.PhotoUrl)
+	err := ct.db.QueryRow("select profile_code, wanted_job_title, first_name, last_name, email, phone, country, city, address, postal_code, driving_license, nationality, place_of_birth, date_of_birth, photo_url from cv_form.user_dtls.profile_dtls where profile_code = $1 and del_flg != 'Y'", id).Scan(&rowScan.ProfileCode, &rowScan.WantedJobTitle, &rowScan.FirstName, &rowScan.LastName, &rowScan.Email, &rowScan.Phone, &rowScan.Country, &rowScan.City, &rowScan.Address, &rowScan.PostalCode, &rowScan.DrivingLicense, &rowScan.Nationality, &rowScan.PlaceOfBirth, &rowScan.DateOfBirth, &rowScan.PhotoUrl)
 	if err != nil && err != sql.ErrNoRows {
 		return nil, err
 	}
