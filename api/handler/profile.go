@@ -11,20 +11,20 @@ import (
 	"strconv"
 )
 
-type Controllers struct {
-	PUsecase models.ProfileUsecase
+type ProfileControllers struct {
+	Usecase models.ProfileUsecase
 }
 
-func NewControllersProfile(g *gin.RouterGroup, PUsecase models.ProfileUsecase) {
-	handler := &Controllers{PUsecase: PUsecase}
+func NewProfileControllers(g *gin.RouterGroup, PUsecase models.ProfileUsecase) {
+	handler := &ProfileControllers{Usecase: PUsecase}
 	g.GET("/profile/:id", handler.GetProfile)
 	g.POST("/profile", handler.AddProfile)
 	g.PUT("/profile/:id", handler.EditProfile)
 }
 
-func (r *Controllers) GetProfile(c *gin.Context) {
+func (r *ProfileControllers) GetProfile(c *gin.Context) {
 	id := c.Param("id")
-	data, err := r.PUsecase.Get(c, id)
+	data, err := r.Usecase.Get(c, id)
 	if err != nil {
 		logger.Log.Errorf("[PROFILE][GET] ERROR %v for requestId: %v", err.Error(), requestid.Get(c))
 		c.JSON(http.StatusInternalServerError, models.CreateResponse(c, constants.InternalServerCode, constants.InternalServerError, constants.WarnInternalError, err.Error()))
@@ -35,7 +35,7 @@ func (r *Controllers) GetProfile(c *gin.Context) {
 	c.JSON(http.StatusOK, data)
 }
 
-func (r *Controllers) AddProfile(c *gin.Context) {
+func (r *ProfileControllers) AddProfile(c *gin.Context) {
 	var req models.Profile
 	req.ProfileCode = random.RandNumber()
 
@@ -46,7 +46,7 @@ func (r *Controllers) AddProfile(c *gin.Context) {
 		return
 	}
 
-	err := r.PUsecase.Create(c, &req)
+	err := r.Usecase.Create(c, &req)
 	if err != nil {
 		logger.Log.Errorf("[PROFILE][ADD] ERROR %v for requestId: %v", err.Error(), requestid.Get(c))
 		c.JSON(http.StatusInternalServerError, models.CreateResponse(c, constants.InternalServerCode, constants.InternalServerError, constants.WarnInternalError, err.Error()))
@@ -57,7 +57,7 @@ func (r *Controllers) AddProfile(c *gin.Context) {
 	c.JSON(http.StatusOK, &models.Profile{ProfileCode: req.ProfileCode})
 }
 
-func (r *Controllers) EditProfile(c *gin.Context) {
+func (r *ProfileControllers) EditProfile(c *gin.Context) {
 	var req models.Profile
 	id := c.Param("id")
 	code, _ := strconv.Atoi(id)
@@ -69,7 +69,7 @@ func (r *Controllers) EditProfile(c *gin.Context) {
 		return
 	}
 
-	err := r.PUsecase.Update(c, &req)
+	err := r.Usecase.Update(c, &req)
 	if err != nil {
 		logger.Log.Errorf("[PROFILE][EDIT] ERROR %v for requestId: %v", err.Error(), requestid.Get(c))
 		c.JSON(http.StatusInternalServerError, models.CreateResponse(c, constants.InternalServerCode, constants.InternalServerError, constants.WarnInternalError, err.Error()))

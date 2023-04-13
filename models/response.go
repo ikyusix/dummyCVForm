@@ -9,6 +9,20 @@ type Response struct {
 	Response    interface{} `json:"response,omitempty"`
 }
 
+type DataArr struct {
+	DataRow []Data `json:"data,omitempty"`
+}
+
+type Data struct {
+	Id          int    `json:"id,omitempty"`
+	JobTitle    string `json:"jobTitle,omitempty"`
+	Employer    string `json:"employer,omitempty"`
+	StartDate   string `json:"startDate,omitempty"`
+	EndDate     string `json:"endDate,omitempty"`
+	City        string `json:"city,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+
 type Profile struct {
 	ProfileCode    int    `json:"profileCode,omitempty"`
 	WantedJobTitle string `json:"wantedJobTitle,omitempty"`

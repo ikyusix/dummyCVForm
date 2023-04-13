@@ -5,32 +5,32 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Controllers struct {
-	PRepositories models.ProfileRepositories
+type ProfileControllers struct {
+	Repositories models.ProfileRepositories
 }
 
-func NewControllersUsecase(PUsecase models.ProfileRepositories) *Controllers {
-	return &Controllers{PRepositories: PUsecase}
+func NewProfileControllers(PUsecase models.ProfileRepositories) *ProfileControllers {
+	return &ProfileControllers{Repositories: PUsecase}
 }
 
-func (ct *Controllers) Get(c *gin.Context, id string) (*models.Profile, error) {
-	data, err := ct.PRepositories.Get(c, id)
+func (ct *ProfileControllers) Get(c *gin.Context, id string) (*models.Profile, error) {
+	data, err := ct.Repositories.Get(c, id)
 	if err != nil {
 		return nil, err
 	}
 	return data, nil
 }
 
-func (ct *Controllers) Create(c *gin.Context, req *models.Profile) error {
-	err := ct.PRepositories.Create(c, req)
+func (ct *ProfileControllers) Create(c *gin.Context, req *models.Profile) error {
+	err := ct.Repositories.Create(c, req)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (ct *Controllers) Update(c *gin.Context, req *models.Profile) error {
-	err := ct.PRepositories.Update(c, req)
+func (ct *ProfileControllers) Update(c *gin.Context, req *models.Profile) error {
+	err := ct.Repositories.Update(c, req)
 	if err != nil {
 		return err
 	}

@@ -43,12 +43,15 @@ func InitRoute(router *gin.Engine) {
 	api := router.Group("/api")
 
 	// repositories
-	rr := repositories.NewControllersRepositories(db)
+	pr := repositories.NewProfileControllers(db)
+	jr := repositories.NewJobControllers(db)
 
 	// usecase
-	ru := usecase.NewControllersUsecase(rr)
+	pu := usecase.NewProfileControllers(pr)
+	ju := usecase.NewJobControllers(jr)
 
 	// handler
-	handler.NewControllersProfile(api, ru)
+	handler.NewProfileControllers(api, pu)
+	handler.NewJobControllers(api, ju)
 
 }
