@@ -25,6 +25,8 @@ func main() {
 	r.NoMethod(controllers.HandleNoMethod)
 	r.NoRoute(controllers.HandleNoRoutes)
 
+	router.InitRoute(r)
+
 	timeout := time.Duration(config.MyConfig.Timeout) * time.Second
 	newHandler := http.TimeoutHandler(r, timeout, "Timeout!")
 

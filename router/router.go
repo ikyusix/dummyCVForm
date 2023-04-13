@@ -1,6 +1,9 @@
 package router
 
 import (
+	"dummyCVForm/api/handler"
+	"dummyCVForm/api/repositories"
+	"dummyCVForm/api/usecase"
 	"dummyCVForm/pkg/controllers"
 	"dummyCVForm/pkg/middleware"
 	"dummyCVForm/pkg/postgres"
@@ -33,20 +36,19 @@ func CreateRouter(isDev bool) *gin.Engine {
 }
 
 func InitRoute(router *gin.Engine) {
-	_, err := postgres.GetConnectionDB()
+	db, err := postgres.GetConnectionDB()
 	if err != nil {
 		return
 	}
-	//
-	//v1private := router.Group("/v1.0/private")
-	//
-	//// repositories
-	//rr := rptRepo.NewReportingRepositories(db)
-	//
-	//// usecase
-	//ru := rptUc.NewReportingUsecase(rr)
-	//
-	//// handler
-	//rptHdlr.NewReportingControllers(v1private, ru)
+	api := router.Group("/api")
+
+	// repositories
+	rr := repositories.NewControllersRepositories(db)
+
+	// usecase
+	ru := usecase.NewControllersUsecase(rr)
+
+	// handler
+	handler.NewControllersProfile(api, ru)
 
 }

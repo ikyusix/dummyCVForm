@@ -60,7 +60,6 @@ func writeLogReq(c *gin.Context) {
 		}
 
 		logger.Log.WithFields(logrus.Fields{
-			constants.LogType:       constants.Request,
 			constants.Url:           c.Request.URL.Path,
 			constants.Method:        c.Request.Method,
 			constants.RequestId:     requestid.Get(c),
@@ -71,7 +70,6 @@ func writeLogReq(c *gin.Context) {
 	} else {
 		if c.FullPath() != "/" {
 			logger.Log.WithFields(logrus.Fields{
-				constants.LogType:       constants.Request,
 				constants.Url:           c.Request.URL.Path,
 				constants.Method:        c.Request.Method,
 				constants.RequestId:     requestid.Get(c),
@@ -97,7 +95,6 @@ func writeLogResp(c *gin.Context, resp string) {
 
 	if c.FullPath() != "/" {
 		logger.Log.WithFields(logrus.Fields{
-			constants.LogType:      constants.Response,
 			constants.Url:          c.Request.URL.Path,
 			constants.ResponseCode: rc.(string),
 			constants.Method:       c.Request.Method,
