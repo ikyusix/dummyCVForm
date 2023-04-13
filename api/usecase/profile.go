@@ -29,7 +29,10 @@ func (ct *Controllers) Create(c *gin.Context, req *models.Profile) error {
 	return nil
 }
 
-func (ct *Controllers) Update(c *gin.Context, req *models.Profile) (int, error) {
-	//TODO implement me
-	panic("implement me")
+func (ct *Controllers) Update(c *gin.Context, req *models.Profile) error {
+	err := ct.PRepositories.Update(c, req)
+	if err != nil {
+		return err
+	}
+	return nil
 }
