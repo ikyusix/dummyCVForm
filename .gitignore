@@ -1,0 +1,8 @@
+*.exe
+.idea
+*.env
+*.json.out
+*.html
+/log/log
+log
+bin/
