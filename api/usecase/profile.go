@@ -21,9 +21,12 @@ func (ct *Controllers) Get(c *gin.Context, id string) (*models.Profile, error) {
 	return data, nil
 }
 
-func (ct *Controllers) Create(c *gin.Context, req *models.Profile) (int, error) {
-	//TODO implement me
-	panic("implement me")
+func (ct *Controllers) Create(c *gin.Context, req *models.Profile) error {
+	err := ct.PRepositories.Create(c, req)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (ct *Controllers) Update(c *gin.Context, req *models.Profile) (int, error) {

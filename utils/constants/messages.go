@@ -11,9 +11,10 @@ const (
 
 // Messages response
 const (
-	HealthCheck      = "Health Check Success"
-	UndefinedProcess = "Undefined Process"
-	UndefinedMethods = "Undefined Methods"
+	HealthCheck         = "Health Check Success"
+	InternalServerError = "Internal Server Error"
+	UndefinedProcess    = "Undefined Process"
+	UndefinedMethods    = "Undefined Methods"
 )
 
 const (

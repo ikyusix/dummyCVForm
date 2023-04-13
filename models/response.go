@@ -10,21 +10,21 @@ type Response struct {
 }
 
 type Profile struct {
-	ProfileCode    int    `json:"profileCode"`
-	WantedJobTitle string `json:"wantedJobTitle"`
-	FirstName      string `json:"firstName"`
-	LastName       string `json:"lastName"`
-	Email          string `json:"email"`
-	Phone          string `json:"phone"`
-	Country        string `json:"country"`
-	City           string `json:"city"`
-	Address        string `json:"address"`
-	PostalCode     int    `json:"postalCode"`
-	DrivingLicense string `json:"drivingLicense"`
-	Nationality    string `json:"nationality"`
-	PlaceOfBirth   string `json:"placeOfBirth"`
-	DateOfBirth    string `json:"dateOfBirth"`
-	PhotoUrl       string `json:"photoUrl"`
+	ProfileCode    int    `json:"profileCode,omitempty"`
+	WantedJobTitle string `json:"wantedJobTitle,omitempty"`
+	FirstName      string `json:"firstName,omitempty"`
+	LastName       string `json:"lastName,omitempty"`
+	Email          string `json:"email,omitempty"`
+	Phone          string `json:"phone,omitempty"`
+	Country        string `json:"country,omitempty"`
+	City           string `json:"city,omitempty"`
+	Address        string `json:"address,omitempty"`
+	PostalCode     int    `json:"postalCode,omitempty"`
+	DrivingLicense string `json:"drivingLicense,omitempty"`
+	Nationality    string `json:"nationality,omitempty"`
+	PlaceOfBirth   string `json:"placeOfBirth,omitempty"`
+	DateOfBirth    string `json:"dateOfBirth,omitempty"`
+	PhotoUrl       string `json:"photoUrl,omitempty"`
 }
 
 func CreateResponse(c *gin.Context, respCode, respMessage, idMessage string, response interface{}) Response {

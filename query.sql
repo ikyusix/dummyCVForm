@@ -2,7 +2,7 @@ create schema user_dtls;
 
 create table user_dtls.profile_dtls
 (
-    profile_code     int
+    profile_code     int not null
         primary key
         unique,
     wanted_job_title varchar,
